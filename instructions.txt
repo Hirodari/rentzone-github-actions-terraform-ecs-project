@@ -1,0 +1,10 @@
+create repo: rentzone-github-actions-terraform-ecs-project
+clone the repo
+download the zip folder: iac and unzip it
+copy iac folder => rentzone-github-actions-terraform-ecs-project
+create an s3 bucket: mitsindo-terraform-remote-state => enable versioning
+create dynamodb table: terraform-state-lock => LockID
+set up secret manager on the console
+register a domain name 
+update the backend.tf with value
+update terraform.tfvars
