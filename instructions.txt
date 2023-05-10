@@ -8,3 +8,39 @@ set up secret manager on the console
 register a domain name 
 update the backend.tf with value
 update terraform.tfvars
+generate github tokens: clone-repository => check repo
+create github repository secrets
+    settings -> secrets and variables -> actions -> new repo secret 
+    AWS_ACCESS_KEY_ID: AKIA3DRWTYPDKFG2DEAE
+    AWS_SECRET_ACCESS_KEY: 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
+    ECR_REGISTRY: 763544978374.dkr.ecr.us-east-1.amazonaws.com
+    PERSONAL_ACCESS_TOKEN: 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
+    RDS_DB_NAME: applicationdb
+    RDS_DB_PASSWORD: admin123
+    RDS_DB_USERNAME:admin
+create workflow file
+    pre-requisites: it needs to be a yaml file stored in your repo => .github/workflows
+    filename: deploy_pipeline.yml 
+    name: Deploy Pipeline
+
+    on:
+        push:
+            branches: [main]
+
+    env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: us-east-1
+
+    jobs:
+        # Configure AWS credentials 
+        configure_aws_credentials:
+            name: Configure AWS credentials
+            runs-on: ubuntu-latest
+            steps:
+                - name: Configure AWS credentials
+                uses: aws-actions/configure-aws-credentials@v1-node16
+                with:
+                    aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+                    aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+                    aws-region: ${{ env.AWS_REGION }}
