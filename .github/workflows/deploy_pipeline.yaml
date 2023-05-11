@@ -35,7 +35,7 @@ jobs:
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: 1.4.6
+          terraform_version: 1.1.7 #1.4.6
 
       - name: Run Terraform initialize
         working-directory: ./iac
@@ -43,7 +43,7 @@ jobs:
 
       - name: Run Terraform apply/destroy
         working-directory: ./iac
-        run: terraform ${{ env.TERRAFORM_ACTION }} --auto-approve -lock=false
+        run: terraform ${{ env.TERRAFORM_ACTION }} -auto-approve 
 
       - name: Get Terraform output image name
         if: env.TERRAFORM_ACTION == 'apply'
