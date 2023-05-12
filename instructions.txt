@@ -1,6 +1,8 @@
 create repo: rentzone-github-actions-terraform-ecs-project
 clone the repo
 download the zip folder: iac and unzip it
+link: [https://github.com/azeezsalu/aosnote-projects/blob/main/cicd-projects/
+        rentzone-github-actions-terraform-ecs-project/iac.zip]
 copy iac folder => rentzone-github-actions-terraform-ecs-project
 create an s3 bucket: mitsindo-terraform-remote-state => enable versioning
 create dynamodb table: terraform-state-lock => LockID
@@ -21,6 +23,8 @@ create github repository secrets
 create workflow file
     pre-requisites: it needs to be a yaml file stored in your repo => .github/workflows
     filename: deploy_pipeline.yml 
+    link: [https://github.com/azeezsalu/aosnote-projects/blob/main/cicd-projects
+    /rentzone-github-actions-terraform-ecs-project/configure_aws_credentials_reference.yml]
     this file will have all configs and instructions to create a deployment Pipeline
     1. instruct on push to trigger the pipeline, code:
         on:
@@ -32,4 +36,24 @@ create workflow file
             AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
             AWS_REGION: us-east-1
             TERRAFORM_ACTION: destroy
-    3. create jobs, the job will have 3 tasks: configure_aws_credentials, deploy_aws_infrastructure and create_ecr_repository
+    3. create jobs, the job will have 3 tasks: configure_aws_credentials, deploy_aws_infrastructure 
+       and create_ecr_repository
+       link: [https://github.com/azeezsalu/aosnote-projects/blob/main/cicd-projects/
+            rentzone-github-actions-terraform-ecs-project/create_ecr_repository_reference.yml]
+create a self hosted runner:
+    this steps consist of creating an ec2 server on default vpc and public sublic where we can ssh
+    os: amazon linux 2
+    tag: Github Actions Runner
+    purpose: to create an ami/snapshot where git and docker are installed
+    reference: https://github.com/machulav/ec2-github-runner
+    insteall git and docker:
+    sudo yum update -y && \
+    sudo yum install docker -y && \
+    sudo yum install git -y && \
+    sudo yum install libicu -y && \
+    sudo systemctl enable docker
+terminate self hosted runner
+
+create github actions job to start a self hosted runner 
+link: [https://github.com/azeezsalu/aosnote-projects/blob/main/cicd-projects/
+        rentzone-github-actions-terraform-ecs-project/start_runner_reference.yml]
