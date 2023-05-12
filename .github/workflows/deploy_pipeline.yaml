@@ -11,7 +11,7 @@ env:
   TERRAFORM_ACTION: apply
   GITHUB_USERNAME: Hirodari
   REPOSITORY_NAME: github-actions-application-codes
-  WEB_FILE_ZIP: rentzone.zip
+  WEB_FILE_ZIP: rentzone
   WEB_FILE_UNZIP: rentzone
 
 jobs:
