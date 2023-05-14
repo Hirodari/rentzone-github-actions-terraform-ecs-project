@@ -76,52 +76,55 @@ ENV RDS_DB_PASSWORD=$RDS_DB_PASSWORD
 
 # Clone the GitHub repository
 RUN git clone https://${PERSONAL_ACCESS_TOKEN}@github.com/${GITHUB_USERNAME}/${REPOSITORY_NAME}.git
-
-
+# RUN git clone git@github.com:${GITHUB_USERNAME}/${REPOSITORY_NAME}.git
+#               https://github.com/Hirodari/github-actions-application-codes.git
+git clone https://oauth2:TOKEN@github.com/username/repo.git
+git clone https://username:token@github.com/username/repo.git
 # Unzip the zip folder containing the web files
-RUN unzip ${REPOSITORY_NAME}/${WEB_FILE_ZIP} -d ${REPOSITORY_NAME}/
+RUN ls -alh ${REPOSITORY_NAME}
+# RUN unzip ${REPOSITORY_NAME}/${WEB_FILE_ZIP} -d ${REPOSITORY_NAME}/
+RUN echo unziping ${WEB_FILE_ZIP}
+# # RUN unzip github-actions-application-codes/rentzone.zip
+# # Copy the web files into the HTML directory
+# RUN cp -av ${REPOSITORY_NAME}/${WEB_FILE_UNZIP}/. /var/www/html
 
-# Copy the web files into the HTML directory
-RUN cp -av ${REPOSITORY_NAME}/${WEB_FILE_UNZIP}/. /var/www/html
+# # Remove the repository we cloned
+# RUN rm -rf ${REPOSITORY_NAME}
 
-# Remove the repository we cloned
-RUN rm -rf ${REPOSITORY_NAME}
+# # Enable the mod_rewrite setting in the httpd.conf file
+# RUN sed -i '/<Directory "\/var\/www\/html">/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/httpd/conf/httpd.conf
 
-# Enable the mod_rewrite setting in the httpd.conf file
-RUN sed -i '/<Directory "\/var\/www\/html">/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/httpd/conf/httpd.conf
+# # Give full access to the /var/www/html directory
+# RUN chmod -R 777 /var/www/html
 
-# Give full access to the /var/www/html directory
-RUN chmod -R 777 /var/www/html
+# # Give full access to the storage directory
+# RUN chmod -R 777 storage/
 
-# Give full access to the storage directory
-RUN chmod -R 777 storage/
+# # Use the sed command to search the .env file for a line that starts with APP_ENV= and replace everything after the = character
+# RUN sed -i '/^APP_ENV=/ s/=.*$/=production/' .env
 
-# Use the sed command to search the .env file for a line that starts with APP_ENV= and replace everything after the = character
-RUN sed -i '/^APP_ENV=/ s/=.*$/=production/' .env
+# # Use the sed command to search the .env file for a line that starts with APP_URL= and replace everything after the = character
+# RUN sed -i "/^APP_URL=/ s/=.*$/=https:\/\/${DOMAIN_NAME}\//" .env
 
-# Use the sed command to search the .env file for a line that starts with APP_URL= and replace everything after the = character
-RUN sed -i "/^APP_URL=/ s/=.*$/=https:\/\/${DOMAIN_NAME}\//" .env
+# # Use the sed command to search the .env file for a line that starts with DB_HOST= and replace everything after the = character
+# RUN sed -i "/^DB_HOST=/ s/=.*$/=${RDS_ENDPOINT}/" .env
 
-# Use the sed command to search the .env file for a line that starts with DB_HOST= and replace everything after the = character
-RUN sed -i "/^DB_HOST=/ s/=.*$/=${RDS_ENDPOINT}/" .env
+# # Use the sed command to search the .env file for a line that starts with DB_DATABASE= and replace everything after the = character
+# RUN sed -i "/^DB_DATABASE=/ s/=.*$/=${RDS_DB_NAME}/" .env
 
-# Use the sed command to search the .env file for a line that starts with DB_DATABASE= and replace everything after the = character
-RUN sed -i "/^DB_DATABASE=/ s/=.*$/=${RDS_DB_NAME}/" .env
+# # Use the sed command to search the .env file for a line that starts with DB_USERNAME= and replace everything after the = character
+# RUN  sed -i "/^DB_USERNAME=/ s/=.*$/=${RDS_DB_USERNAME}/" .env
+# # Use the sed command to search the .env file for a line that starts with DB_PASSWORD= and replaceafter the = character
+# RUN  sed -i "/^DB_PASSWORD=/ s/=.*$/=${RDS_DB_PASSWORD}/" .env
 
-# Use the sed command to search the .env file for a line that starts with DB_USERNAME= and replace everything after the = character
-RUN  sed -i "/^DB_USERNAME=/ s/=.*$/=${RDS_DB_USERNAME}/" .env
+# # Print the .env file to review values
+# RUN cat .env
 
-# Use the sed command to search the .env file for a line that starts with DB_PASSWORD= and replace everything after the = character
-RUN  sed -i "/^DB_PASSWORD=/ s/=.*$/=${RDS_DB_PASSWORD}/" .env
+# # Copy the file, AppServiceProvider.php from the host file system into the container at the path app/Providers/AppServiceProvider.php
+# COPY AppServiceProvider.php app/Providers/AppServiceProvider.php
 
-# Print the .env file to review values
-RUN cat .env
-
-# Copy the file, AppServiceProvider.php from the host file system into the container at the path app/Providers/AppServiceProvider.php
-COPY AppServiceProvider.php app/Providers/AppServiceProvider.php
-
-# Expose the default Apache and MySQL ports
+# # Expose the default Apache and MySQL ports
 EXPOSE 80 3306
 
-# Start Apache and MySQL
+# # Start Apache and MySQL
 ENTRYPOINT ["/usr/sbin/httpd", "-D", "FOREGROUND"]
