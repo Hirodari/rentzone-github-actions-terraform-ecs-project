@@ -11,7 +11,7 @@ env:
   TERRAFORM_ACTION: apply
   GITHUB_USERNAME: Hirodari
   REPOSITORY_NAME: github-actions-application-codes
-  WEB_FILE_ZIP: rentzone
+  WEB_FILE_ZIP: rentzone.zip
   WEB_FILE_UNZIP: rentzone
 
 jobs:
@@ -236,7 +236,7 @@ jobs:
           IMAGE_NAME: ${{ needs.deploy_aws_infrastructure.outputs.image_name }}
           IMAGE_TAG: ${{ needs.deploy_aws_infrastructure.outputs.image_tag }}
         run: |
-          docker build \
+          docker build --progress=plain \
           --build-arg PERSONAL_ACCESS_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }} \
           --build-arg GITHUB_USERNAME=${{ env.GITHUB_USERNAME }} \
           --build-arg REPOSITORY_NAME=${{ env.REPOSITORY_NAME }} \

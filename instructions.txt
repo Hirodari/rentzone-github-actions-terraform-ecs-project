@@ -58,6 +58,7 @@ create github actions job to start a self hosted runner
     link: [https://github.com/azeezsalu/aosnote-projects/blob/main/cicd-projects/
         rentzone-github-actions-terraform-ecs-project/start_runner_reference.yml]
     PERSONAL_ACCESS_TOKEN: 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
+    PERSONAL_ACCESS_TOKEN(Github Actions Runner): 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
 create a repository to store the code 
     name: github-actions-application-codes
 upload the application code to the repo 
