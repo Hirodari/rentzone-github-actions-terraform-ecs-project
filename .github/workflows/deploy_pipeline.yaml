@@ -422,6 +422,6 @@ jobs:
       - name: Wait for ECS service to become stable
         env:
           ECS_CLUSTER_NAME: ${{ needs.deploy_aws_infrastructure.outputs.ecs_cluster_name }}
-          ECS_SERVICE_NAME: ${{ needs.deploy_aws_infrastructure.outputs.ecs_service_nam }}
+          ECS_SERVICE_NAME: ${{ needs.deploy_aws_infrastructure.outputs.ecs_service_name }}
         run: |
           aws ecs wait services-stable --cluster ${{ env.ECS_CLUSTER_NAME }} --services ${{ env.ECS_SERVICE_NAME }}
