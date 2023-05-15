@@ -1,7 +1,0 @@
-Error: creating IAM Role : AccessDenied: User: arn:aws:iam:::user/ is not authorized to perform: iam:CreateRole on resource: arn:aws:iam:::role/rentzone-dev-ecs-task-execution-role with an explicit deny in an identity-based policy
-│       status code: 403,
-
-User: arn:aws:iam::xxx:user/xxx is not authorized to perform: iam:AttachGroupPolicy on resource: group admin-group with an explicit deny in an identity-based policy
-
-AWSCodeCommitPowerUser
-AWSCompromisedKeyQuarantineV2
