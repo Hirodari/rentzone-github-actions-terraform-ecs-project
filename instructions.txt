@@ -84,4 +84,26 @@ create a github actions job to build and push a docker image into amazon ecr
             rentzone-github-actions-terraform-ecs-project/build%20docker%20image%20variables.txt]
           [https://github.com/azeezsalu/aosnote-projects/blob/main/cicd-projects/
             rentzone-github-actions-terraform-ecs-project/build_and_push_image_reference.yml]
-    
+create a github actions job to export the environ variables into the s3 buck et for ecs service
+    link : [https://github.com/azeezsalu/aosnote-projects/blob/main/cicd-projects/
+            rentzone-github-actions-terraform-ecs-project/export_env_variables_reference.yml]
+create the sql folder and download sql file
+    link: [https://github.com/azeezsalu/aosnote-projects/blob/main/cicd-projects/
+            rentzone-github-actions-terraform-ecs-project/V1__rentzone-db.sql]
+create a github actions to migrate data into the rds database with flyway
+    lunk: [https://github.com/azeezsalu/aosnote-projects/blob/main/cicd-projects/
+            rentzone-github-actions-terraform-ecs-project/migrate_data_reference.yml]
+    FLYWWAY_VERSION: 9.8.1
+Terminate ec2 self hosted runner on the console 
+create a github actions job to stop the self hosted runner 
+    link: [https://github.com/azeezsalu/aosnote-projects/blob/main/cicd-projects/
+            rentzone-github-actions-terraform-ecs-project/stop_runner_reference.yml]
+create a github actions to create ecs new task definition
+    link: [https://github.com/azeezsalu/aosnote-projects/blob/main/cicd-projects/
+            rentzone-github-actions-terraform-ecs-project/create_td_revision_reference.yml]
+create a github actions to restart ecs fargate service
+    link: [https://github.com/azeezsalu/aosnote-projects/blob/main/cicd-projects/
+            rentzone-github-actions-terraform-ecs-project/restart_ecs_service_reference.yml]
+
+
+
