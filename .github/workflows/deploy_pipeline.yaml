@@ -411,7 +411,7 @@ jobs:
     if: needs.deploy_aws_infrastructure.outputs.terraform_action != 'destroy'
     runs-on: ubuntu-latest
     steps:
-      - name: Update ECS Service
+      - name: Update ECS Service  
         env:
           ECS_CLUSTER_NAME: ${{ needs.deploy_aws_infrastructure.outputs.ecs_cluster_name }}
           ECS_SERVICE_NAME: ${{ needs.deploy_aws_infrastructure.outputs.ecs_service_name }}
