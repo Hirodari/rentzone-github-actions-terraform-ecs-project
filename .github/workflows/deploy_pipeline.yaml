@@ -399,7 +399,7 @@ jobs:
   # Restart ECS Fargate service
   restart_ecs_service:
     name: Restart ECS Fargate service
-    timeout-minutes: 15
+    timeout-minutes: 10
     needs: 
       - configure_aws_credentials
       - deploy_aws_infrastructure 
