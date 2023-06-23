@@ -230,7 +230,8 @@ jobs:
         run: |
           sudo rm -rf /usr/share/dotnet
           sudo rm -rf "$AGENT_TOOLSDIRECTORY"
-          docker system prune -a -f
+          sudo rm -rf /opt/ghc
+          sudo rm -rf "/usr/local/share/boost"
           sudo swapoff /swapfile || true
       - name: Checkout repository
         uses: actions/checkout@v3
