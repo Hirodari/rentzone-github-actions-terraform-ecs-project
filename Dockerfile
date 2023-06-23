@@ -92,9 +92,12 @@ RUN rm -rf ${WEB_FILE_ZIP}
 # Copy the web files into the HTML directory
 # RUN cp -av ${REPOSITORY_NAME}/${WEB_FILE_UNZIP}/. /var/www/html
 
-# Remove the repository we cloned
+# Remove the repository we clonedx
 RUN rm -rf ${REPOSITORY_NAME}
 
+# check the repo
+RUN pwd
+RUN ls
 # Enable the mod_rewrite setting in the httpd.conf file
 RUN sed -i '/<Directory "\/var\/www\/html">/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/httpd/conf/httpd.conf
 
