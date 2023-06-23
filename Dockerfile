@@ -87,6 +87,8 @@ RUN echo unziping ${WEB_FILE_ZIP}
 # RUN unzip ${WEB_FILE_ZIP} -d ${REPOSITORY_NAME}/
 RUN unzip ${WEB_FILE_ZIP} -d /var/www/html
 RUN rm -rf ${WEB_FILE_ZIP}
+RUN cp -av /var/www/html/${WEB_FILE_UNZIP}/. /var/www/html
+RUN rm -rf /var/www/html/${WEB_FILE_UNZIP}
 
 # RUN unzip github-actions-application-codes/rentzone.zip
 # Copy the web files into the HTML directory
@@ -105,7 +107,7 @@ RUN sed -i '/<Directory "\/var\/www\/html">/,/<\/Directory>/ s/AllowOverride Non
 RUN chmod -R 777 /var/www/html
 
 # Give full access to the storage directory
-RUN chmod -R 777 storage/
+RUN chmod -R 777 /var/www/html/storage/
 
 # Use the sed command to search the .env file for a line that starts with APP_ENV= and replace everything after the = character
 RUN sed -i '/^APP_ENV=/ s/=.*$/=production/' .env
