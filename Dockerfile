@@ -85,13 +85,13 @@ COPY ${WEB_FILE_ZIP} .
 RUN ls -alh 
 RUN echo unziping ${WEB_FILE_ZIP}
 RUN unzip ${WEB_FILE_ZIP} -d ${REPOSITORY_NAME}/
+RUN rm -rf ${WEB_FILE_ZIP}
 
 # RUN unzip github-actions-application-codes/rentzone.zip
 # Copy the web files into the HTML directory
 RUN cp -av ${REPOSITORY_NAME}/${WEB_FILE_UNZIP}/. /var/www/html
 
 # Remove the repository we cloned
-RUN rm -rf ${WEB_FILE_ZIP}
 RUN rm -rf ${REPOSITORY_NAME}
 
 # Enable the mod_rewrite setting in the httpd.conf file
