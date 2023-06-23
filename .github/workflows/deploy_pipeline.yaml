@@ -34,7 +34,7 @@ jobs:
     name: Build AWS infrastructure
     needs: configure_aws_credentials
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 25
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -230,6 +230,8 @@ jobs:
         run: |
           sudo rm -rf /usr/share/dotnet
           sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+          docker system prune -a -f
+          sudo swapoff /swapfile || true
       - name: Checkout repository
         uses: actions/checkout@v3
 
