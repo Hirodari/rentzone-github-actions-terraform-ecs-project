@@ -84,12 +84,13 @@ COPY ${WEB_FILE_ZIP} .
 # Unzip the zip folder containing the web files
 RUN ls -alh 
 RUN echo unziping ${WEB_FILE_ZIP}
-RUN unzip ${WEB_FILE_ZIP} -d ${REPOSITORY_NAME}/
+# RUN unzip ${WEB_FILE_ZIP} -d ${REPOSITORY_NAME}/
+RUN unzip ${WEB_FILE_ZIP} -d /var/www/html
 RUN rm -rf ${WEB_FILE_ZIP}
 
 # RUN unzip github-actions-application-codes/rentzone.zip
 # Copy the web files into the HTML directory
-RUN cp -av ${REPOSITORY_NAME}/${WEB_FILE_UNZIP}/. /var/www/html
+# RUN cp -av ${REPOSITORY_NAME}/${WEB_FILE_UNZIP}/. /var/www/html
 
 # Remove the repository we cloned
 RUN rm -rf ${REPOSITORY_NAME}
