@@ -224,7 +224,7 @@ jobs:
       - start_runner
     if: needs.deploy_aws_infrastructure.outputs.terraform_action != 'destroy'
     runs-on: self-hosted
-    timeout-minutes: 5
+    timeout-minutes: 20
     steps:
       - name: Remove unnecessary files
         run: |
