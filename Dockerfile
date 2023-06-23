@@ -95,7 +95,7 @@ RUN rm -rf /var/www/html/${WEB_FILE_UNZIP}
 # RUN cp -av ${REPOSITORY_NAME}/${WEB_FILE_UNZIP}/. /var/www/html
 
 # Remove the repository we clonedx
-RUN rm -rf ${REPOSITORY_NAME}
+# RUN rm -rf ${REPOSITORY_NAME}
 
 # check the repo
 RUN pwd
