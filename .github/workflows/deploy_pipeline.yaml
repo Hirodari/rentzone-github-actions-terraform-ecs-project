@@ -33,7 +33,7 @@ jobs:
   deploy_aws_infrastructure:
     name: Build AWS infrastructure
     needs: configure_aws_credentials
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04-16core
     timeout-minutes: 25
     steps:
       - name: Checkout repository
